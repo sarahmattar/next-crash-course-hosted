@@ -2,6 +2,7 @@ import { articles } from '../../../data'
 
 export default function handler(req, res) {
   const filtered = articles.filter(article => article.id === req.query.id)
+  console.log(filtered)
   if (filtered.length > 0) {
     res.status(200).json(filtered[0])
   } else {

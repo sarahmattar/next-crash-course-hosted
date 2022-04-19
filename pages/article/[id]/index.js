@@ -1,7 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
+import { articles } from '../../../data'
 // import { useRouter } from 'next/router'
-import { server } from '../../../config'
 import Meta from '../../../components/Meta'
 
 const article = ({ article }) => {
@@ -23,9 +23,11 @@ const article = ({ article }) => {
   )
 }
 
-export const getStaticProps = async context => {
-  const res = await fetch(`${server}/api/articles/${context.params.id}`)
-  const article = await res.json()
+export const getStaticProps = context => {
+  const { id } = context.params
+  const filtered = articles.filter(article => article.id === id)
+  const article = filtered[0]
+  console.log(article)
 
   return {
     props: {
@@ -35,9 +37,6 @@ export const getStaticProps = async context => {
 }
 
 export const getStaticPaths = async () => {
-  const res = await fetch(`${server}/api/articles`)
-  const articles = await res.json()
-
   const ids = articles.map(article => article.id)
   const paths = ids.map(id => ({
     params: { id: id.toString() },

@@ -1,5 +1,5 @@
 import ArticleList from '../components/ArticleList'
-import { server } from '../config'
+import { articles as articlesFromDatabase } from '../data'
 
 export default function Home({ articles }) {
   return (
@@ -25,11 +25,8 @@ export default function Home({ articles }) {
 // 	};
 // };
 
-export const getStaticProps = async () => {
-  const res = await fetch(`${server}/api/articles`)
-
-  const articles = await res.json()
-
+export const getStaticProps = () => {
+  const articles = articlesFromDatabase
   return {
     props: {
       articles,
