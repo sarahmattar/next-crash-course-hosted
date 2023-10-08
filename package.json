@@ -11,7 +11,7 @@
     "prettier": "npx prettier --write --config .prettierrc.yaml --ignore-path .prettierignore ."
   },
   "dependencies": {
-    "next": "12.1.5",
+    "next": "13.5.4",
     "react": "18.0.0",
     "react-dom": "18.0.0"
   },
